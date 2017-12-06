@@ -1,0 +1,9 @@
+articles:
+    path:     /
+    defaults: { _controller: TestArticleBundle:Article:showArticles }
+form_article:
+    path:     /articles/add
+    defaults: { _controller: TestArticleBundle:Article:add }
+delete_article:
+    path:     /articles/delete
+    defaults: { _controller: TestArticleBundle:Article:delete }

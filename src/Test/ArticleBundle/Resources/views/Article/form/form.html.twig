@@ -1,0 +1,62 @@
+{% extends "TestArticleBundle:Article:index.html.twig" %}
+
+{% block title %}{{ parent() }} - Index{% endblock %}
+
+{% block body %}
+ <div class="col-ms-8">
+<div class="well">
+  {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+ 
+  {{ form_errors(form) }}
+
+  <!--label -->
+  <div class="form-group">
+    {{ form_label(form.label, "Label", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+    {{ form_errors(form.label) }}
+    <div class="col-sm-10">
+      {{ form_widget(form.label, {'attr': {'class': 'form-control'}}) }}
+    </div>
+  </div>
+
+  <!--description -->
+  <div class="form-group">
+    {{ form_label(form.description, "Description", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+    {{ form_errors(form.description) }}
+    <div class="col-sm-10">
+      {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+    </div>
+  </div> 
+  
+  <!--amount ht -->
+  <div class="form-group">
+    {{ form_label(form.amountHt, "Amount Ht", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+    {{ form_errors(form.amountHt) }}
+    <div class="col-sm-10">
+      {{ form_widget(form.amountHt, {'attr': {'class': 'form-control','id':'amount'}}) }}
+    </div>
+  </div>
+
+   <!-- tva -->
+   <div class="row">
+   <div class='col-sm-2'></div>
+    <div class="col-sm-10"><i>Display of differents values of amount HT when input amount value is changing</i></div>
+  </div>
+   <div class="form-group">
+	  <div class='col-sm-2 control-label tva17'></div>
+      <div class="col-sm-10 ">
+       <input class="changeValueTva17" type="text" disabled placeholder="TVA à 17%"/>
+	  </div>
+</div>
+  <div class="form-group">
+	 <div class='col-sm-2 control-label tva1'> </div>
+	  <div class="col-sm-10">
+      <input class="changeValueTva1" type="text" disabled placeholder="TVA à 3%" />
+	  </div>
+  </div>
+  {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+  {{ form_rest(form) }}
+  {{ form_end(form) }}
+</div>
+</div>
+{% endblock %}

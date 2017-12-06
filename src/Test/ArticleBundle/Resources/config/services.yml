@@ -1,0 +1,17 @@
+parameters:
+    tva_17: 1.17
+    tva_3: 1.03
+
+services:
+    test_article.tva.3:
+        class: Test\ArticleBundle\Tva\Tva
+        arguments:
+            - "%tva_3%"
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+    test_article.tva.17:
+        class: Test\ArticleBundle\Tva\Tva
+        arguments:
+            - "%tva_17%"
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }

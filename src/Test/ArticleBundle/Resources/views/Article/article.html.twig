@@ -1,0 +1,50 @@
+{% extends "TestArticleBundle:Article:index.html.twig" %}
+
+{% block title %}{{ parent() }} - Index{% endblock %}
+
+{% block body %}
+ <div class="col-ms-8">
+  <div id="removedArticle" class="alert alert-success" style='display:none;text-align:center;'> Article supprimé</div>
+  {% for flashMessage in app.session.flashbag.get('notice') %}
+   <div class="alert alert-success">
+    {{ flashMessage }}
+ </div>
+{% endfor %}
+<div class="table-responsive">          
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Label</th>
+        <th>Description</th>
+        <th>Amount HT</th>
+        <th>Amount with TVA 17%</th>
+        <th>Amount with TVA 3%</th>
+        <th>Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+	
+     {% for article in articles%}
+	 <!--diferent var for rable -->
+	  {% set descr="  * " %}
+	  {% set Pricetva17= article.amountHt * 1.17 %}
+	  {% set Pricetva3= article.amountHt * 1.03 %}  
+	  {% set descr="  * " %}
+      {% if article.description is not null%} {% set descr=article.description %} {% endif %}
+      <tr>
+			<td>{{ loop.index }}</td>
+			<td>{{article.label}}</td> <td>{{ descr }} </td>
+			<td>{{article.amountHt}}</td>
+			<td>{{Pricetva17}}</td><td>{{Pricetva3 }}</td>
+			<td>{{ article.creation|date('d/m/Y m:i:s')}}</td>
+			<td><i id ="{{article.id }}"  class="fa fa-close delete" style="font-size:15px;color:red"></i></td>
+			
+		</tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock %}
